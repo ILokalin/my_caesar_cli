@@ -1,12 +1,13 @@
 const { program } = require('commander');
-const { fs } = require('fs');
+const filesIO = require('./caesar-modules/files-io');
+
 const { pipeline } = require('stream');
  
 program
-  .option('-s, --shift <shift>', 'a shift')
-  .option('-i, --input <file>', 'input file')
-  .option('-o, --output <file>', 'output file')
-  .option('-a, --action <type>', 'action type');
+  .option('-s, --shift  <shift>')
+  .option('-i, --input  <file>')
+  .option('-o, --output <file>')
+  .option('-a, --action <type>');
  
 program.parse(process.argv);
 
@@ -30,29 +31,14 @@ const isCheckShiftParam = () => {
   return false;
 }
 
-const inputStream = (inputFileName = '') => {
-  
-  if (inputFileName !== '') {
-    return fs.createReadStream(input, {encoding: 'utf8'});
-  } else {
-    return process.stdin;
-  }
-}
 
-const outputStream = (outputFileName = '') => {
-  if (outputFileName !== '') {
-    return fs.createWriteStream(output, {flags: 'a'})
-  } else {
-    return process.stdout;
-  }
-}
 
 if (isCheckActionParam() && isCheckShiftParam()) {
   console.log(`Thank you for good params. Your shift is ${numShift} and you choice action is ${action}`);
 
   pipeline(
-    inputStream(input),
-    outputStream(output),
+    filesIO.inputStream(input),
+    filesIO.outputStream(output),
     (err) => {
       if (err) {
         console.log('Pipeline failed.', err);
