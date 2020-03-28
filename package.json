@@ -1,0 +1,23 @@
+{
+  "name": "my_caesar_cli",
+  "version": "1.0.0",
+  "description": "node.js app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ILokalin/my_caesar_cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ILokalin/my_caesar_cli/issues"
+  },
+  "homepage": "https://github.com/ILokalin/my_caesar_cli#readme",
+  "dependencies": {
+    "commander": "^5.0.0"
+  }
+}
