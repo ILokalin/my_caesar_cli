@@ -2,6 +2,22 @@
 
 CLI tool for node.js that will encode and decode a text by Caesar cipher. RS School task.
 
+### App layout
+
+```
+my_caesar_cli
+│
+├─ caesar-modules
+│  ├─ codec.js
+│  └─ files-io.js
+├─ caesar.js
+├─ decode-test.txt
+└─ encode-test.txt
+```
+
+Entry:<br>
+**`./caesar.js`**
+
 ### About this App
 - if passed params are fine the output (file or stdout) should contain encoded/decoded content of input (file or stdin).
 - if the input file is missed - App use stdin as an input source.
@@ -27,23 +43,22 @@ Options:<br>
 
 ### Demo
 
-Use
-
+Use:<br>
 **`$ node caesar.js -s 7 -a encode --input encode-test.txt`**
 
-`
-Your shift is 7 and you choice action is encode
-encode-test.txt
-Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!
-`
+```
+Your shift is 7 and you choice action is encode<br>
+encode-test.txt<br>
+Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!<br>
+```
 
 **`$ node caesar.js -s 7 -a decode --input decode-test.txt`**
 
-`
-Your shift is 7 and you choice action is decode
-decode-test.txt
-This is secret. Message about "_" symbol!
-`
+```
+Your shift is 7 and you choice action is decode<br>
+decode-test.txt<br>
+This is secret. Message about "_" symbol!<br>
+```
 
 ### Gratitude
 Thank you for attention<br>
