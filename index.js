@@ -1,5 +1,6 @@
 const { program } = require('commander');
 const filesIO = require('./caesar-modules/files-io');
+const caesarCodec = require('./caesar-modules/codec');
 
 const { pipeline } = require('stream');
  
@@ -31,13 +32,19 @@ const isCheckShiftParam = () => {
   return false;
 }
 
+this.getCaesarCodec = (chunk) => {
+  const actionMethod = caesarCodec.action();
 
+  console.log(actionMethod[action](chunk, numShift)); 
+  return 'Hello'
+}
 
 if (isCheckActionParam() && isCheckShiftParam()) {
   console.log(`Thank you for good params. Your shift is ${numShift} and you choice action is ${action}`);
 
   pipeline(
     filesIO.inputStream(input),
+    filesIO.transformStream(this.getCaesarCodec),
     filesIO.outputStream(output),
     (err) => {
       if (err) {
@@ -54,5 +61,5 @@ if (isCheckActionParam() && isCheckShiftParam()) {
   if (!numShift) console.error('Expected that shift is number');
   if (!action) console.error('Expected that action is "encode" or "decode"');
 
-  return 1;
+  process.exitCode = 1;
 }
