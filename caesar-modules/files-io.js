@@ -1,9 +1,12 @@
-const { fs } = require('fs');
+const fs = require('fs');
+const { Transform } = require('stream');
+
 
 module.exports =  {
   inputStream: (inputFileName = '') => {
     if (inputFileName !== '') {
-      return fs.createReadStream(input, {encoding: 'utf8'});
+      console.log(inputFileName);
+      return fs.createReadStream(inputFileName, 'utf8');
     } else {
       return process.stdin;
     }
@@ -11,9 +14,18 @@ module.exports =  {
 
   outputStream: (outputFileName = '') => {
     if (outputFileName !== '') {
-      return fs.createWriteStream(output, {flags: 'a'})
+      return fs.createWriteStream(outputFileName, {flags: 'a'})
     } else {
       return process.stdout;
     }
+  },
+
+  transformStream: (codec) => {
+
+    return new Transform({
+      transform(chunk, encoding, callback) {
+        callback(null, codec(chunk));
+      }
+      })
   }
 }
