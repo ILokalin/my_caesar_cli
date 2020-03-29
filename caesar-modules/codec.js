@@ -6,16 +6,22 @@ const CRYPT_FIT_BIG_REGEXP = /[A-Z]/,
 
 module.exports = {
   action: () => {
-    function encode(source, numShift) {
+
+    const codeForChar = (item, shift, alphabetStartCode) => {
+      return (item - alphabetStartCode + shift) % ALPHABET_LENGTH + alphabetStartCode;
+    }
+
+    function codec (source, shift, action) {
+      const codecShift = action === 'encode' ? shift : (ALPHABET_LENGTH - shift);
       let resultString = '';
 
       [...source].forEach(item => {
         charItem = String.fromCharCode(item);
 
         if (CRYPT_FIT_BIG_REGEXP.test(charItem )) {
-          resultString += String.fromCharCode((item - CODE_CHAR_A + numShift) % ALPHABET_LENGTH + CODE_CHAR_A);
+          resultString += String.fromCharCode(codeForChar(item, codecShift, CODE_CHAR_A));
         } else if (CRYPT_FIT_SMALL_REGEXP.test(charItem )) {
-          resultString += String.fromCharCode((item - CODE_CHAR_a + numShift) % ALPHABET_LENGTH + CODE_CHAR_a);
+          resultString += String.fromCharCode(codeForChar(item, codecShift, CODE_CHAR_a));
         } else {
           resultString += String.fromCharCode(item);
         }
@@ -24,13 +30,8 @@ module.exports = {
       return resultString;
     }
 
-    function decode(source, shift) {
-      console.log('Decoder', shift, [...source]);
-    }
-
     return {
-      decode: decode,
-      encode: encode
+      codec: codec
     };
   }
 }
