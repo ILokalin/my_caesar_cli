@@ -47,17 +47,17 @@ Use:<br>
 **`$ node caesar.js -s 7 -a encode --input encode-test.txt`**
 
 ```
-Your shift is 7 and you choice action is encode<br>
-encode-test.txt<br>
-Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!<br>
+Your shift is 7 and you choice action is encode
+encode-test.txt
+Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!
 ```
 
 **`$ node caesar.js -s 7 -a decode --input decode-test.txt`**
 
 ```
-Your shift is 7 and you choice action is decode<br>
-decode-test.txt<br>
-This is secret. Message about "_" symbol!<br>
+Your shift is 7 and you choice action is decode
+decode-test.txt
+This is secret. Message about "_" symbol!
 ```
 
 ### Gratitude
